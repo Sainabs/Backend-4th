@@ -48,27 +48,30 @@ getGoalBtn.addEventListener('click', getGoal);
 const tasksContainer = document.querySelector('#tasks-container');
 const form = document.querySelector('form');
 
+
 const baseURL = `http://localhost:4000/api/task`
+
 const tasksCallback = ({ data: tasks }) => displayTasks(tasks);
+const errCallback = err => console.log(err.response.data)
 
-const errCallback = err => console.log(err)
-
-const getTasks = () => axios.get(baseURL).then(tasksCallback).catch(errCallback)
-
+const getAllTasks = () => axios.get(baseURL).then(tasksCallback).catch(errCallback)
 const createTask = body => axios.post(baseURL, body).then(tasksCallback).catch(errCallback)
-
 const deleteTask = id => axios.delete(`${baseURL}/${id}`).then(tasksCallback).catch(errCallback)
-
 const updateTask = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(tasksCallback).catch(errCallback)
+const updateTaskName = body => axios.post(`${baseURL}/updateName`, body).then(tasksCallback).catch(errCallback)
 
 function submitHandler(event) {
     event.preventDefault()
     let task = document.querySelector('#task')
+    let rating = document.querySelector('input[name="ratings"]:checked')
+    
     let bodyObj = {
-        task: task.value 
+        task: task.value, 
+        rating: rating.value
     }
     createTask(bodyObj)
     task.value = ''
+    rating.checked = false
 }
 
 
@@ -77,7 +80,13 @@ function createTaskCard(task) {
     taskCard.classList.add('task-card')
 
     taskCard.innerHTML = `<p class="task">${task.task}</p>
+    <div class="btns-container">
+        <button onclick="updateTask(${task.id}, 'minus')">-</button>
+        <p class="task-rating">${task.rating} stars</p>
+        <button onclick="updateTask(${task.id}, 'plus')">+</button>
+    </div>
     <button onclick="deleteTask(${task.id})">delete</button>`
+    
     tasksContainer.appendChild(taskCard)
 }
 
@@ -88,7 +97,22 @@ function displayTasks(arr) {
     }
 }
 
-form.addEventListener('submit', submitHandler)
+function UpdateTaskName(){
+    //console.error("wrong update")
+    let UpdateName = document.querySelector('#updateName')
+    let UpdateId = document.querySelector('#updateId')
+    console.error(UpdateId.value)
 
-getTasks()
+    let bodyObj = {
+        UpdateName: UpdateName.value, 
+        UpdateId: UpdateId.value
+    }
+    updateTaskName(bodyObj)
+    task.value = ''
+    rating.checked = false
+
+}
+
+form.addEventListener('submit', submitHandler)
+getAllTasks()
 

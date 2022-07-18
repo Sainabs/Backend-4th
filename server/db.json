@@ -2,18 +2,33 @@
 [
     {
       "id": 1,
-      "task": "Create a goal"
+      "task": "Learn a new skill",
+      "rating": 5
     },
     {
       "id": 2,
-      "task": "Buy a car"
+      "task": "Buy a new car",
+      "rating": 2
       
     },
     {
       "id": 3,
-      "task": "Clean the balcony"
+      "task": "Create a vision board for the year.",
+      "rating": 1
+      
+    },
+    {
+      "id": 4,
+      "task": "Work on your budget or personal finance.",
+      "rating": 3
+      
+    },
+    {
+      "id": 5,
+      "task": "Update Your Resume",
+      "rating": 4
       
     }
 
-  ]
- 
+]
+

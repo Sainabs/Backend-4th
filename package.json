@@ -14,5 +14,14 @@
     "express": "^4.18.1",
     "nodemon": "^2.0.19"
   },
-  "description": "Module 4 Assessment Instruction"
+  "description": "Module 4 Assessment Instruction",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sainabs/Backend-4th.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sainabs/Backend-4th/issues"
+  },
+  "homepage": "https://github.com/Sainabs/Backend-4th#readme"
 }

@@ -1,5 +1,5 @@
  let tasks = require('./db.json');
- let globalID = 4;
+ let globalID = 6;
 
 module.exports = {
 
@@ -14,7 +14,7 @@ module.exports = {
     },
 
     getFortune: (req, res) => {
-            const fortunes = ["All your hard work will soon pay off!", "Allow compassion to guide your decisions!", "An acquaintance of the past will affect you in the near future!"];
+            const fortunes = ["All your hard work will soon pay off!", "Allow compassion to guide your decisions!", "An acquaintance of the past will affect you in the near future!", "He who knows he has enough is rich!","From now on your kindness will lead you to success!", "If your desires are not extravagant, they will be granted!", "He who knows himself is enlightened"];
         
             // choose random fortune
             let randomIndex = Math.floor(Math.random() * fortunes.length);
@@ -36,6 +36,9 @@ module.exports = {
 
     },
 
+
+
+
     getTask: (req, res) => {
         // console.error("im here")
         res.status(200).send(tasks)
@@ -51,14 +54,41 @@ module.exports = {
 
     createTask: (req, res)=>{
         // console.error(req.body)
-        const {task} = req.body;
+        const {task,rating} = req.body;
         let newTask={
         id:globalID,
         task:task,
+        rating:+rating
         }
 
         tasks.push(newTask);
         globalID++;
         res.status(200).send(tasks);
     },
+    updateTask:(req,res) => {
+        const {type} =req.body;
+       let index= tasks.findIndex(elem=> elem.id === +req.params.id)
+       if(type === 'minus' && tasks[index].rating >1){
+        tasks[index].rating -=1;
+        res.status(200).send(tasks)
+       }else if (type === 'plus' && tasks[index].rating <5){
+        tasks[index].rating +=1;
+        res.status(200).send(tasks)
+       }else{
+        res.status(400).send('Invalid priority rating!')
+       }
+    },
+    updateTaskName:(req,res) => {
+        //console.error(req.body)
+        const {type} =req.body;
+        let index= tasks.findIndex(elem=> elem.id == req.body.UpdateId)
+        if(index === -1) {
+            res.status(400).send('Invalid Task Id!')
+        }else{
+            tasks[index].task=req.body.UpdateName;
+            res.status(200).send(tasks)
+        }
+        //console.error(tasks[index].rating)
+        
+    }
 }

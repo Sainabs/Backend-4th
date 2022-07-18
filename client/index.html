@@ -6,7 +6,6 @@
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
     <button id="fortuneButton">Get a Fortune</button>
-    <button id="goalButton">Random Task</button>
 
     <br>
     <br>
@@ -14,21 +13,96 @@
     <h1>Welcome to your task master.</h1>
   </header>
   <main>
+    <h3>Recieve Random Task</h3> 
+    <button id="goalButton">Random Tasks</button>
+    <br> 
+    <br>
+    
 
   <form>
 		 Task:
       <input 
-       type="text"
-       id="task" 
-       placeholder="Add your tasks">
+        type="text"
+        id="task" 
+        placeholder="Add your tasks">
+       
+       <section id="ratings-container">
+        <p>Prioritize Your Tasks:</p>
+            <div id="radio-container">
+                <label for="one">
+                    <input
+                        type="radio"
+                        name="ratings"
+                        value="1"
+                        id="one"/>
+                    1
+                </label>
+                <label for="two">
+                    <input
+                        type="radio"
+                        name="ratings"
+                        value="2"
+                        id="two"/>
+                    2
+                </label>
+                <label for="three">
+                    <input
+                        type="radio"
+                        name="ratings"
+                        value="3"
+                        id="three"/>
+                    3
+                </label>
+                <label for="four">
+                    <input
+                        type="radio"
+                        name="ratings"
+                        value="4"
+                        id="four"/>
+                    4
+                </label>
+                <label for="five">
+                    <input
+                        type="radio"
+                        name="ratings"
+                        value="5"
+                        id="five"/>
+                    5
+                </label>
+            </div>
+        </section>
         <br>
-        <br>
+      <br>
       <input type="submit">
-
+      <br>
+      <br>
       <br>
 
-		</form>
-
+      
+        
+                  
+          
+	</form>
+    <form>
+        <h3>Update Task Name</h3>
+        Update:
+        <input type="text"
+        placeholder= "New Task Name"
+        id="updateName">
+        
+        <br>
+        Id:
+        <input type= "number"
+        placeholder= "Task Id"
+        id="updateId">
+        <br>
+        <button onclick="UpdateTaskName()">Update</button>
+       
+        <br>
+        <br>
+        <br>
+    
+    </form>
 
     <section id="tasks-container"></section>
 
